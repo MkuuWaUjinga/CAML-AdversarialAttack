@@ -71,10 +71,6 @@ def test(model, device, test_loader, epsilon, num_runs, first_k):
                 # If the initial prediction is wrong, dont bother attacking, just move on
                 if pred.item() != target.item() and run == 0:
                     raise ValueError("Initial Prediction Wrong")
-                # If the label has been flipped after an attack, stop doing iterations.
-                elif pred.item() != target.item() and run != 0:
-                    print(f"Label flipped after {run} iterations")
-                    #break
 
                 # Calculate the loss
                 loss = F.nll_loss(output, target)
