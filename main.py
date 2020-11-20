@@ -6,13 +6,6 @@ import torch.nn.functional as F
 # support iterative fast gradient sign method (i-FGSM) attacks as well.
 # In case you want to perform FGSM just set runs = 1.
 
-# TODO do step wise example creation
-# Num columns = num iterations
-# First Row = Current Perturbed Image
-# Second Row = Current Added Noise
-# Third Row = Current Class Distribution
-
-
 def fgsm_attack(image, epsilon, data_grad):
     # Get sign of gradients for each input pixel
     gradient_sign = data_grad.sign()
