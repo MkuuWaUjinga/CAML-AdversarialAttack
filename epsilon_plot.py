@@ -3,10 +3,10 @@ import matplotlib.pyplot as plt
 from torchvision import datasets, transforms
 from main import test, Net
 
-epsilons = [.1]
+epsilons = [0, .05, .1, .15, .2, .25, .3 ]
 pretrained_model = "data/lenet_mnist_model.pth"
 # Only do attack on first k test data to speed up run time
-first_k = 1000
+first_k = 10000
 use_cuda = False
 runs = 5
 

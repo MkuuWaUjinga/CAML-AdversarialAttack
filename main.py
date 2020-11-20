@@ -48,7 +48,7 @@ def test(model, device, test_loader, epsilon, num_runs, first_k):
         class_dist = []
         perturbed_hist = [data.squeeze().detach().cpu().numpy()]
         noise_hist = [noise.squeeze().detach().cpu().numpy()]
-
+        num_samples_seen += 1
 
         # Send the data and label to the device
         data, target = data.to(device), target.to(device)
@@ -120,7 +120,6 @@ def test(model, device, test_loader, epsilon, num_runs, first_k):
                 adv_ex = perturbed_data.squeeze().detach().cpu().numpy()
                 adv_examples.append( (target.item(), final_pred.item(), adv_ex, class_dist, perturbed_hist, noise_hist) )
 
-        num_samples_seen += 1
         # Enough attacks for today?
         if num_samples_seen == first_k:
             break
