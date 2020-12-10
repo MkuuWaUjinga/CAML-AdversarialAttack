@@ -13,7 +13,7 @@ def fgsm_attack(image, epsilon, data_grad):
     perturbed_image = image + epsilon * gradient_sign
     # Make sure that input values of image stay the same.
     perturbed_image = torch.clamp(perturbed_image, 0, 1)
-    return perturbed_image, epsilon * gradient_sign
+    return perturbed_image, perturbed_image - image
 
 # LeNet Model definition
 class Net(nn.Module):
