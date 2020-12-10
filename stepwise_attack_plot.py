@@ -58,16 +58,17 @@ for j in indices:#range(len(examples[0])):
         plt.imshow(per, cmap="gray")
         if step == 0:
             plt.ylabel("Attack Image", fontsize=14)
-        # Plot noise
+        # Plot noise. The grayer the pixel the stronger the change.
         plt.subplot(4, 6, cnt + 6)
         plt.xticks([], [])
         plt.yticks([], [])
-        plt.imshow(noise, cmap="gray")
+        plt.imshow(1 - np.abs(noise), cmap="gray", vmin=0.5, vmax=1)
         if step == 0:
             plt.ylabel("Noise", fontsize=14)
         # Plot claas_dist
         plt.subplot(4, 6, cnt + 12)
         plt.bar(np.arange(len(dis)), softmax(dis))
+        plt.yticks(np.arange(0, 1, step=0.2))
         plt.xlabel("Class")
         plt.ylabel("Probability")
 
